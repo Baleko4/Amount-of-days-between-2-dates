@@ -1,5 +1,5 @@
 import java.util.*;
-class diffDays{ //This class will give me the value we are looking for.
+class diffDays1{ //This class will give me the value we are looking for.
     public int mtod(int month){ //Responsible for converting the month in the dates to an equivalent number of days.
         if(month==1){ //If it's January then we don't need to add extra days.
             month=0;
@@ -26,7 +26,7 @@ class diffDays{ //This class will give me the value we are looking for.
         return month;
     }
     public int diferenca(String A, String B){ //Here we get the main value.
-        int Total=0,monthA,monthB,dayA,dayB,yearA,yearB;
+        int Total=0,monthA,monthB,dayA,dayB,yearA,yearB,mA,mB;
         // From lines 31 to 43 is just getting the numeric values of the dates from the strings.
         yearA= 1000*Character.getNumericValue(A.charAt(6)) + 100*Character.getNumericValue(A.charAt(7)) 
         + 10*Character.getNumericValue(A.charAt(8)) + Character.getNumericValue(A.charAt(9));
@@ -41,38 +41,38 @@ class diffDays{ //This class will give me the value we are looking for.
         monthA= 10*Character.getNumericValue(A.charAt(3)) + Character.getNumericValue(A.charAt(4));
 
         monthB= 10*Character.getNumericValue(B.charAt(3)) + Character.getNumericValue(B.charAt(4));
-
+        int j=yearA;
+        mA = monthA;
+        mB = monthB;
         monthA=mtod(monthA);
         monthB=mtod(monthB);
-        int i,j=yearA;
-        if(yearA%4==0 && monthA>2){ // This takes into account the leap year in the number of days in the month of the date.
+        if(yearA%4==0 && mA>2){ // This takes into account the leap year in the number of days in the month of the date.
             monthA++;
         }
-        if(yearB%4==0 && monthB>2){
+        if(yearB%4==0 && mB>2){
             monthB++;
         }
         Total=dayB+monthB-dayA-monthA;
-        if(yearB-yearA>=2){
-            for(i=0;i<3;i++){ // Takes into account all the extra leap year days from the beggining year to the final.
+        if(yearB-yearA>2){
+            while(j<3+yearA){ // Takes into account all the extra leap year days from the beggining year to the final.
                 if(j%4==0){
                     Total++;
                     Total=Total+(yearB-j-1)/4;
                     break;
                 }
-                j=j++;
+                j++;
             }
         }
         else{
-            for(i=0;i<=yearB-yearA;i++){ // Takes into account all the extra leap year days from the beggining year to the final.
+            while(j<=yearB){ // Takes into account all the extra leap year days from the beggining year to the final.
                 if(j%4==0){
                     Total++;
-                    Total=Total+(yearB-j-1)/4;
                     break;
                 }
-                j=j++;
+                j++;
             }
         }           
-        if(i==3 || i==yearB-yearA+1){
+        if(j==3+yearA || j==yearB+1){
             Total=Total+(yearB-yearA)/4;
         }
         Total=Total+(yearB-yearA)*365;
@@ -87,7 +87,7 @@ public class bInvest {
         date1=sc.nextLine();
         System.out.println("Insert here the second one:");
         date2=sc.nextLine();
-        diffDays df = new diffDays();
+        diffDays1 df = new diffDays1();
         System.out.println(df.diferenca(date1, date2));
         sc.close();
     }
