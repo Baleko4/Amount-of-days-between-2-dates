@@ -48,10 +48,10 @@ class diffDays1{ //This class will give me the value we are looking for.
         monthB=mtod(monthB);
         centA = (yearA-1)/100+1;
         centB = (yearB-1)/100+1;
-        if(yearA%4==0 && mA>2){ // This takes into account the leap year in the number of days in the month of the date.
+        if((yearA%4==0 && mA>2 && yearA%100!=0 ) || (yearA%400==0 && mA>2 )){ // This takes into account the leap year in the number of days in the month of the date.
             monthA++;
         }
-        if(yearB%4==0 && mB>2){
+        if((yearB%4==0 && mB>2 && yearB%100!=0 ) || (yearB%400==0 && mB>2 )){
             monthB++;
         }
         Total=dayB+monthB-dayA-monthA;
