@@ -26,7 +26,7 @@ class diffDays1{ //This class will give me the value we are looking for.
         return month;
     }
     public int diferenca(String A, String B){ //Here we get the main value.
-        int Total=0,monthA,monthB,dayA,dayB,yearA,yearB,mA,mB;
+        int Total=0,monthA,monthB,dayA,dayB,yearA,yearB,mA,mB,centA,centB;
         // From lines 31 to 43 is just getting the numeric values of the dates from the strings.
         yearA= 1000*Character.getNumericValue(A.charAt(6)) + 100*Character.getNumericValue(A.charAt(7)) 
         + 10*Character.getNumericValue(A.charAt(8)) + Character.getNumericValue(A.charAt(9));
@@ -46,6 +46,8 @@ class diffDays1{ //This class will give me the value we are looking for.
         mB = monthB;
         monthA=mtod(monthA);
         monthB=mtod(monthB);
+        centA = (yearA-1)/100+1;
+        centB = (yearB-1)/100+1;
         if(yearA%4==0 && mA>2){ // This takes into account the leap year in the number of days in the month of the date.
             monthA++;
         }
@@ -76,6 +78,12 @@ class diffDays1{ //This class will give me the value we are looking for.
             Total=Total+(yearB-yearA)/4;
         }
         Total=Total+(yearB-yearA)*365;
+        while(centA<centB){
+            if(centA%4!=0){
+                Total--;
+            }
+            centA++;
+        }
         return Total;
     }
 }
