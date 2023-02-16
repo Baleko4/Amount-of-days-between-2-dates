@@ -25,22 +25,22 @@ class diffDays1{ //This class will give me the value we are looking for.
         }
         return month;
     }
+    public int stringtonumber (int A, int B, String C){
+        int num=0;
+        for(int i=A;i<=B;i++){
+            num=num + (int)Math.pow(Double.valueOf(10), Double.valueOf(B-i))* Character.getNumericValue(C.charAt(i));
+        }
+        return num;
+    }
     public int diferenca(String A, String B){ //Here we get the main value.
         int Total=0,monthA,monthB,dayA,dayB,yearA,yearB,mA,mB,centA,centB;
         // From lines 31 to 43 is just getting the numeric values of the dates from the strings.
-        yearA= 1000*Character.getNumericValue(A.charAt(6)) + 100*Character.getNumericValue(A.charAt(7)) 
-        + 10*Character.getNumericValue(A.charAt(8)) + Character.getNumericValue(A.charAt(9));
-
-        yearB= 1000*Character.getNumericValue(B.charAt(6)) + 100*Character.getNumericValue(B.charAt(7)) 
-        + 10*Character.getNumericValue(B.charAt(8)) + Character.getNumericValue(B.charAt(9));
-
-        dayA= 10*Character.getNumericValue(A.charAt(0)) + Character.getNumericValue(A.charAt(1));
-
-        dayB= 10*Character.getNumericValue(B.charAt(0)) + Character.getNumericValue(B.charAt(1));
-
-        monthA= 10*Character.getNumericValue(A.charAt(3)) + Character.getNumericValue(A.charAt(4));
-
-        monthB= 10*Character.getNumericValue(B.charAt(3)) + Character.getNumericValue(B.charAt(4));
+        yearA= stringtonumber(6, 9, A);
+        yearB= stringtonumber(6, 9, B);
+        dayA= stringtonumber(0, 1, A);
+        dayB= stringtonumber(0, 1, B);
+        monthA= stringtonumber(3, 4, A);
+        monthB= stringtonumber(3, 4, B);
         int j=yearA;
         mA = monthA;
         mB = monthB;
